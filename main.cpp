@@ -1,28 +1,26 @@
-/* Author: Allison Delgado
- * Last updated: October 11
+/*Author: Allison Delgado
+ * Last updated: October 13
  * Classes is a project that serves as a media database holding music vids,
  * movies, and songs to practice using classes and inheritance.
  */
 
 #include <iostream>
-#include "ClassesHeader.h"
+#include "media.h"
+#include <vector>
+#include <cstring>
 using namespace std;
 
-class Parent{
-  public:
-  int getYear();
-  char* getTitle();
-  
-};
+//function prototypes
+bool checkLegal(char *command);
+void quit();
 
-int Parent::getYear(){
-
+//quit program
+void quit(){
+  cout << "Quitting program. See you next time!" << endl;
+  return;
 }
 
-char* Parent::getTitle(){
-
-}
-
+//check to make sure the given command is one of the 4 possible
 bool checkLegal(char *command){
   if(strcmp(command, "ADD") == 0){
     return true;
@@ -40,26 +38,40 @@ bool checkLegal(char *command){
 }
 
 int main(){
-  cout << "Welcome to the media database."
+  //vector containing Parent class: media
+  vector<media> mediaVtr;
+  cout << "Welcome to the media database.";
+    char command[7];
   
-  bool isLegal = checkLegal(command);
-
   while (strcmp(command, "QUIT") != 0){
     cout << "Enter a command: ADD, SEARCH, DELETE, QUIT" << endl;
-    char command[7];
     cin.get(command, 7);
     cin.get();
+    char searchCommands[6]; //either title or year
+    
     //format to all uppercase
     for(int i = 0; i < strlen(command); i++){
       command[i] = toupper(command[i]);
     }
+    bool isLegal = checkLegal(command);
     //check if legal
     if(isLegal == true){
       
       if(strcmp(command, "ADD") == 0){
+	cout << "ADD lets you add any kind of media or information." << endl;
 	
       }
       if(strcmp(command, "SEARCH") == 0){
+	cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
+	cin.get(searchCommands, 6);
+	cin.get();
+	if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
+
+	}
+	if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
+
+	}
+	  
 	
       }
       if(strcmp(command, "DELETE") == 0){
@@ -67,5 +79,6 @@ int main(){
       }
     }
   }
+  quit();
   return 0;
 }

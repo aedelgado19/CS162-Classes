@@ -6,7 +6,7 @@ char* Music::getArtist(){
   return artist;
 }
 
-media::duration Music::getDuration(){
+Music::duration_t Music::getDuration(){
   return duration;
 
 }

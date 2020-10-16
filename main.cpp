@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include "media.h"
+//#include "media.h"
 #include "VideoGames.h"
 #include "Music.h"
 #include "Movies.h"
@@ -23,11 +23,11 @@ bool mediaValidCheck(char *type);
 
 char* searchMedia(vector<media> mediaVtr, char *searchCommand){
   //iterate thru vector
-  for(vector<media>::iterator index = mediaVtr->begin(); index!=mediaVtr->end(); ++index){
+  for(vector<media>::iterator index = mediaVtr.begin(); index!=mediaVtr.end(); ++index){
     
 
   }
-  return *char; //is this right lmao help
+  return NULL; 
 }
 
 void deleteMedia(vector<media> mediaVtr, char *searchCommand){
@@ -36,26 +36,34 @@ void deleteMedia(vector<media> mediaVtr, char *searchCommand){
   return;
 }
 void addMedia(vector<media> mediaVtr, char type){
+  int minutesLocal = 0;
+  int secondsLocal = 0;
+
   //adding movie
   if(type == 'a'){
-    Movies* movie = new Movie();
+    Movies* movie = new Movies();
     cout << "Enter the title of the movie: " << endl;
-    cin.get(movie -> getTitle(), 100);
+    cin.get(movie->getTitle(), 100);
     cin.get();
     cout << "Enter the year it was made: " << endl;
-    cin >> *movie -> getYear();
+    cin >> *movie->getYear();
     cout << "Enter the director: " << endl;
-    cin.get(movie -> getDirector(), 100);
+    cin.get(movie->getDirector(), 100);
     cin.get();
-    cout << "Enter the duration: " << endl;
-    cin >> *movie -> getDuration();
+    cout << "Enter the duration in minutes and seconds." << endl;
+    cout << "FIRST enter the duration in minutes (seconds later): " << endl;
+    cin >> minutesLocal;
+    cout << "Now enter seconds of duration: " << endl;
+    cin >> secondsLocal;
+    movies->setDuration(minutesLocal, secondsLocal);
     cout << "Enter the rating" << endl;
-    cin >> *movie -> getRating();
-    media -> push_back(movie);
+    cin >> *movie->getRating();
+    mediaVtr->push_back(movie);
   }
 
   //adding video game
   if(type == 'b'){
+    
 
 
   }

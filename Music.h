@@ -4,6 +4,10 @@
 class Music : public media{
 
 public:
+  struct duration_t{
+    int mins;
+    int seconds;
+  };
   char* getArtist();
   duration_t getDuration();
   char* getPublisher();

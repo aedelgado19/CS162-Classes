@@ -1,5 +1,5 @@
 //header file for Parent class: media
-
+#pragma once
 class media{
 public:
   int getYear();

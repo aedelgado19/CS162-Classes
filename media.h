@@ -1,13 +1,12 @@
 //header file for Parent class: media
 
 class media{
- public:
+public:
   int getYear();
   char* getTitle();
 
-  struct duration{
-    int mins;
-    int seconds;
-    
-  };
+private:
+  //store fields
+  char title[100];
+  int year;
 };

@@ -6,6 +6,9 @@
 
 #include <iostream>
 #include "media.h"
+#include "VideoGames.h"
+#include "Music.h"
+#include "Movies.h"
 #include <vector>
 #include <cstring>
 using namespace std;
@@ -13,6 +16,57 @@ using namespace std;
 //function prototypes
 bool checkLegal(char *command);
 void quit();
+char* searchMedia(vector<media> mediaVtr, char *searchCommand);
+void deleteMedia(vector<media> mediaVtr, char *searchCommand);
+void addMedia(vector<media> mediaVtr, char typeOfMedia);
+bool mediaValidCheck(char *type);
+
+char* searchMedia(vector<media> mediaVtr, char *searchCommand){
+  //iterate thru vector
+  for(vector<media>::iterator index = mediaVtr->begin(); index!=mediaVtr->end(); ++index){
+    
+
+  }
+  return *char; //is this right lmao help
+}
+
+void deleteMedia(vector<media> mediaVtr, char *searchCommand){
+
+
+  return;
+}
+void addMedia(vector<media> mediaVtr, char type){
+  //adding movie
+  if(type == 'a'){
+    Movies* movie = new Movie();
+    cout << "Enter the title of the movie: " << endl;
+    cin.get(movie -> getTitle(), 100);
+    cin.get();
+    cout << "Enter the year it was made: " << endl;
+    cin >> *movie -> getYear();
+    cout << "Enter the director: " << endl;
+    cin.get(movie -> getDirector(), 100);
+    cin.get();
+    cout << "Enter the duration: " << endl;
+    cin >> *movie -> getDuration();
+    cout << "Enter the rating" << endl;
+    cin >> *movie -> getRating();
+    media -> push_back(movie);
+  }
+
+  //adding video game
+  if(type == 'b'){
+
+
+  }
+
+  //adding music
+  if(type == 'c'){
+
+  }
+    return;
+}
+
 
 //quit program
 void quit(){
@@ -37,9 +91,27 @@ bool checkLegal(char *command){
   return false;
 }
 
+//check to see when adding media if type is valid
+bool checkMediaValid(char *type){
+  if(strcmp(type, "MOVIE") == 0){
+    return true;
+  }
+  if(strcmp(type, "VIDEO GAME") == 0){
+    return true;
+  }
+  if(strcmp(type, "MUSIC") == 0){
+    return true;
+  }
+  
+
+  return false;
+}
+
 int main(){
   //vector containing Parent class: media
   vector<media> mediaVtr;
+  char type[20]; //contains what type of media user wants to add
+  char typeOfMedia = 'a'; //either a) movie b) video game or c) music
   cout << "Welcome to the media database.";
     char command[7];
   
@@ -48,6 +120,8 @@ int main(){
     cin.get(command, 7);
     cin.get();
     char searchCommands[6]; //either title or year
+    char TorY[100]; //title of media or year of media
+    bool mediaValid = false;
     
     //format to all uppercase
     for(int i = 0; i < strlen(command); i++){
@@ -58,18 +132,45 @@ int main(){
     if(isLegal == true){
       
       if(strcmp(command, "ADD") == 0){
-	cout << "ADD lets you add any kind of media or information." << endl;
+	cout << "What type of media? (movie/video game/music)" << endl;
+	cin.get(type, 20);
+	cin.get();
 	
+	//format to upper
+	for(int i = 0; i < strlen(type); i++){
+	  type[i] = toupper(type[i]);
+	}
+	//make sure input is a valid type
+	mediaValid = mediaValidCheck(type);
+	while (mediaValid != true){
+	  if(strcmp(type, "MOVIE") == 0){
+	    typeOfMedia = 'a';
+	  }
+	  else if(strcmp(type, "VIDEO GAME") == 0){
+	    typeOfMedia = 'b';
+	  }
+	  else if(strcmp(type, "MUSIC") == 0){
+	    typeOfMedia = 'c';
+	  }
+	}
+	//valid input (out of while loop)
+	addMedia(mediaVtr, typeOfMedia);
       }
       if(strcmp(command, "SEARCH") == 0){
 	cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
 	cin.get(searchCommands, 6);
 	cin.get();
 	if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
-
+	  cout << "Enter a Title: " << endl;
+	  cin.get(TorY, 100);
+	  cin.get();
+	  searchMedia(mediaVtr, *TorY);
 	}
 	if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
-
+	  cout << "Enter a year: " << endl;
+	  cin.get(TorY, 100);
+	  cin.get();
+	  searchMedia(mediaVtr, *TorY);	  
 	}
 	  
 	

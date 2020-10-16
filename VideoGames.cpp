@@ -3,9 +3,9 @@
 
 
 char* VideoGames::getPublisher(){
-
+  return publisher;
 }
 
 int VideoGames::getRating(){
-
+  return rating;
 }

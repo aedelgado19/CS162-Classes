@@ -3,8 +3,13 @@
 
 class VideoGames : public media{
 
- public:
+public:
   char* getPublisher();
   int getRating();
 
+private:
+  char title[100];
+  int year;
+  char publisher[100];
+  int rating;
 };

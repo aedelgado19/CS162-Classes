@@ -4,14 +4,13 @@
 using namespace std;
 
 char* Movies::getDirector(){
-
-
+  return director;
 }
 
-media::duration Movies::getDuration(){
-
+media::duration_t Movies::getDuration(){
+  return duration;
 }
 
 int Movies::getRating(){
-
+  return rating;
 }

@@ -5,11 +5,11 @@
 using namespace std;
 
 int media::getYear(){
-
+  return year;
 
 }
 
 char* media::getTitle(){
-
+  return title;
 
 }

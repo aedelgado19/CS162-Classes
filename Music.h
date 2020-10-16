@@ -3,9 +3,13 @@
 
 class Music : public media{
 
- public:
+public:
   char* getArtist();
-  duration getDuration();
+  duration_t getDuration();
   char* getPublisher();
 
+private:
+  char artist[100];
+  duration_t duration;
+  char publisher[100];
 };

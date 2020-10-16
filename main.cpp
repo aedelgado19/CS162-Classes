@@ -49,12 +49,11 @@ void addMedia(vector<media> mediaVtr, char type){
     cin.get();
     cout << "Enter the year it was made: " << endl;
     cin >> yearLocal;
+    movie->setYear(yearLocal);
     cout << "Enter the director: " << endl;
     cin.get(movie->getDirector(), 100);
     cin.get();
     cout << "Enter the duration in minutes and seconds." << endl;
-    cin >> yearLocal;
-    movie->setYear(yearLocal);
     cout << "FIRST enter the duration in minutes (seconds later): " << endl;
     cin >> minutesLocal;
     cout << "Now enter seconds of duration: " << endl;
@@ -68,9 +67,20 @@ void addMedia(vector<media> mediaVtr, char type){
 
   //adding video game
   if(type == 'b'){
-    
-
-
+    VideoGames *vg = new VideoGames();
+    cout << "Enter the title of the video game: " << endl;
+    cin.get(vg->getTitle(), 100);
+    cin.get();
+    cout << "Enter the year it was released: " << endl;
+    cin >> yearLocal;
+    vg->setYear(yearLocal);
+    cout << "Enter the publisher of the video game: " << endl;
+    cin.get(vg->getPublisher(), 100);
+    cin.get();
+    cout << "Enter the rating of the video game: " << endl;
+    cin >> ratingLocal;
+    vg->setRating(ratingLocal);
+    mediaVtr.push_back(*vg);
   }
 
   //adding music

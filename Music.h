@@ -9,6 +9,7 @@ public:
     int seconds;
   };
   char* getArtist();
+  int setDuration(int mins, int seconds);
   duration_t getDuration();
   char* getPublisher();
 

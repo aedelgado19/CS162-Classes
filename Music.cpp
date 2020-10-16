@@ -8,7 +8,12 @@ char* Music::getArtist(){
 
 Music::duration_t Music::getDuration(){
   return duration;
+}
 
+int Music::setDuration(int mins, int seconds){
+  duration.mins = mins;
+  duration.seconds = seconds;
+  return 0;
 }
 
 char* Music::getPublisher(){

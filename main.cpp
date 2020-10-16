@@ -56,7 +56,7 @@ void addMedia(vector<media> mediaVtr, char type){
     cout << "Enter the duration in minutes and seconds." << endl;
     cout << "FIRST enter the duration in minutes (seconds later): " << endl;
     cin >> minutesLocal;
-    cout << "Now enter seconds of duration: " << endl;
+    cout << "Now enter seconds: " << endl;
     cin >> secondsLocal;
     movie->setDuration(minutesLocal, secondsLocal);
     cout << "Enter the rating" << endl;
@@ -85,7 +85,26 @@ void addMedia(vector<media> mediaVtr, char type){
 
   //adding music
   if(type == 'c'){
-
+    Music *m = new Music();
+    cout << "Enter the title of the song: " << endl;
+    cin.get(m->getTitle(), 100);
+    cin.get();
+    cout << "Enter the year it was released: " << endl;
+    cin >> yearLocal;
+    m->setYear(yearLocal);
+    cout<< "Enter the artist: " << endl;
+    cin.get(m->getArtist(), 100);
+    cout << "Enter the duration in minutes and seconds." << endl;
+    cout << "FIRST enter the duration in MINUTES (seconds later): " << endl;
+    cin >> minutesLocal;
+    cout << "Now enter the seconds: " << endl;
+    cin >> secondsLocal;
+    m->setDuration(minutesLocal, secondsLocal);
+    cout << "Enter the publisher of the song: " << endl;
+    cin.get(m->getPublisher(), 100);
+    cin.get();
+    
+    
   }
     return;
 }

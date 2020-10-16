@@ -9,6 +9,11 @@ int media::getYear(){
 
 }
 
+int media::setYear(int inputYear){
+  year = inputYear;
+  return 0;
+}
+
 char* media::getTitle(){
   return title;
 

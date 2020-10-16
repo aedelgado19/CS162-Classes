@@ -1,7 +1,7 @@
 //header file for child class: movies
 #include "media.h"
 
-class Movies : media {
+class Movies : public media {
 public:
 
   struct duration_t{
@@ -11,6 +11,7 @@ public:
   char* getDirector();
   duration_t getDuration();
   int getRating();
+  int setRating(int inputRating);
   int setDuration(int mins, int seconds);  
 private:
 

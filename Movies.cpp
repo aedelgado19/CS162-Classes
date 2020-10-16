@@ -10,6 +10,11 @@ Movies::duration_t Movies::getDuration(){
   return duration;
 }
 
+int Movies::setRating(int inputRating){
+  rating = inputRating;
+  return 0;
+}
+
 //sets duration in struct
 int Movies::setDuration(int mins, int seconds){
   duration.mins = mins;

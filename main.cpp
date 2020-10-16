@@ -23,10 +23,10 @@ bool mediaValidCheck(char *type);
 
 char* searchMedia(vector<media> mediaVtr, char *searchCommand){
   //iterate thru vector
-  for(vector<media>::iterator index = mediaVtr.begin(); index!=mediaVtr.end(); ++index){
+  // for(vector<media>::iterator index = mediaVtr.begin(); index!=mediaVtr.end(); ++index){
     
 
-  }
+  // }
   return NULL; 
 }
 
@@ -38,7 +38,9 @@ void deleteMedia(vector<media> mediaVtr, char *searchCommand){
 void addMedia(vector<media> mediaVtr, char type){
   int minutesLocal = 0;
   int secondsLocal = 0;
-
+  int yearLocal = 0;
+  int ratingLocal = 0;
+  
   //adding movie
   if(type == 'a'){
     Movies* movie = new Movies();
@@ -46,19 +48,22 @@ void addMedia(vector<media> mediaVtr, char type){
     cin.get(movie->getTitle(), 100);
     cin.get();
     cout << "Enter the year it was made: " << endl;
-    cin >> *movie->getYear();
+    cin >> yearLocal;
     cout << "Enter the director: " << endl;
     cin.get(movie->getDirector(), 100);
     cin.get();
     cout << "Enter the duration in minutes and seconds." << endl;
+    cin >> yearLocal;
+    movie->setYear(yearLocal);
     cout << "FIRST enter the duration in minutes (seconds later): " << endl;
     cin >> minutesLocal;
     cout << "Now enter seconds of duration: " << endl;
     cin >> secondsLocal;
-    movies->setDuration(minutesLocal, secondsLocal);
+    movie->setDuration(minutesLocal, secondsLocal);
     cout << "Enter the rating" << endl;
-    cin >> *movie->getRating();
-    mediaVtr->push_back(movie);
+    cin >> ratingLocal;
+    movie->setRating(ratingLocal);
+    mediaVtr.push_back(*movie);
   }
 
   //adding video game
@@ -100,7 +105,7 @@ bool checkLegal(char *command){
 }
 
 //check to see when adding media if type is valid
-bool checkMediaValid(char *type){
+bool mediaValidCheck(char *type){
   if(strcmp(type, "MOVIE") == 0){
     return true;
   }
@@ -110,9 +115,7 @@ bool checkMediaValid(char *type){
   if(strcmp(type, "MUSIC") == 0){
     return true;
   }
-  
-
-  return false;
+    return false;
 }
 
 int main(){
@@ -164,7 +167,8 @@ int main(){
 	//valid input (out of while loop)
 	addMedia(mediaVtr, typeOfMedia);
       }
-      if(strcmp(command, "SEARCH") == 0){
+      /*
+       if(strcmp(command, "SEARCH") == 0){
 	cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
 	cin.get(searchCommands, 6);
 	cin.get();
@@ -180,12 +184,13 @@ int main(){
 	  cin.get();
 	  searchMedia(mediaVtr, *TorY);	  
 	}
-	  
-	
-      }
+
+       }
+      
       if(strcmp(command, "DELETE") == 0){
 	
       }
+      */
     }
   }
   quit();

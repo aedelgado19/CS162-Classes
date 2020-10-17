@@ -124,7 +124,6 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
     return;
 }
 
-
 //quit program
 void quit(){
   cout << "Quitting program. See you next time!" << endl;
@@ -218,7 +217,7 @@ int main(){
 	//valid input (out of while loop)
 	addMedia(mediaVtr, typeOfMedia);
       }
-      /*
+
        if(strcmp(command, "SEARCH") == 0){
 	cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
 	cin.get(searchCommands, 6);
@@ -241,7 +240,7 @@ int main(){
       if(strcmp(command, "DELETE") == 0){
 	
       }
-      */
+
     }
   }
   quit();

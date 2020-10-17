@@ -6,11 +6,11 @@ class VideoGames : public media{
 
 public:
   char* getPublisher();
-  int getRating();
+  char* getRating();
   int setRating(int inputRating);
 private:
   char title[100];
   int year;
   char publisher[100];
-  int rating;
+  char rating[3];
 };

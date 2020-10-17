@@ -5,11 +5,11 @@ char* VideoGames::getPublisher(){
   return publisher;
 }
 
-int VideoGames::setRating(int inputRating){
+int VideoGames::setRating(char* inputRating){
   rating = inputRating;
   return 0;
 }
 
-int VideoGames::getRating(){
+char* VideoGames::getRating(){
   return rating;
 }

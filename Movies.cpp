@@ -10,7 +10,7 @@ Movies::duration_t Movies::getDuration(){
   return duration;
 }
 
-int Movies::setRating(int inputRating){
+int Movies::setRating(char* inputRating){
   rating = inputRating;
   return 0;
 }
@@ -22,6 +22,6 @@ int Movies::setDuration(int mins, int seconds){
   return 0;
 }
 
-int Movies::getRating(){
+char* Movies::getRating(){
   return rating;
 }

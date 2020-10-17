@@ -39,7 +39,7 @@ void addMedia(vector<media> mediaVtr, char type){
   int minutesLocal = 0;
   int secondsLocal = 0;
   int yearLocal = 0;
-  int ratingLocal = 0;
+  char ratingLocal[3]; //max letter count for rating is PG + null = 3
   
   //adding movie
   if(type == 'a'){
@@ -49,6 +49,7 @@ void addMedia(vector<media> mediaVtr, char type){
     cin.get();
     cout << "Enter the year it was made: " << endl;
     cin >> yearLocal;
+    cin.get();
     movie->setYear(yearLocal);
     cout << "Enter the director: " << endl;
     cin.get(movie->getDirector(), 100);
@@ -59,7 +60,7 @@ void addMedia(vector<media> mediaVtr, char type){
     cout << "Now enter seconds: " << endl;
     cin >> secondsLocal;
     movie->setDuration(minutesLocal, secondsLocal);
-    cout << "Enter the rating" << endl;
+    cout << "Enter the rating: (ex PG, G, R..)" << endl;
     cin >> ratingLocal;
     movie->setRating(ratingLocal);
     mediaVtr.push_back(*movie);
@@ -152,8 +153,8 @@ int main(){
   vector<media> mediaVtr;
   char type[20]; //contains what type of media user wants to add
   char typeOfMedia = 'a'; //either a) movie b) video game or c) music
-  cout << "Welcome to the media database.";
-    char command[7];
+  cout << "Welcome to the media database." << endl;
+  char command[7];
   
   while (strcmp(command, "QUIT") != 0){
     cout << "Enter a command: ADD, SEARCH, DELETE, QUIT" << endl;

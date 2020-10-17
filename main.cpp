@@ -104,6 +104,7 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
     cin.get();
     cout << "Enter the year it was released: " << endl;
     cin >> yearLocal;
+    cin.get();
     m->setYear(yearLocal);
     cout<< "Enter the artist: " << endl;
     cin.get(m->getArtist(), 100);
@@ -112,6 +113,7 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
     cin >> minutesLocal;
     cout << "Now enter the seconds: " << endl;
     cin >> secondsLocal;
+    cin.get();
     m->setDuration(minutesLocal, secondsLocal);
     cout << "Enter the publisher of the song: " << endl;
     cin.get(m->getPublisher(), 100);

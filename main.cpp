@@ -18,7 +18,7 @@ bool checkLegal(char *command);
 void quit();
 char* searchMedia(vector<media> mediaVtr, char *searchCommand);
 void deleteMedia(vector<media> mediaVtr, char *searchCommand);
-void addMedia(vector<media> mediaVtr, char typeOfMedia);
+void addMedia(vector<media> mediaVtr, int typeOfMedia);
 bool mediaValidCheck(char *type);
 
 char* searchMedia(vector<media> mediaVtr, char *searchCommand){
@@ -35,57 +35,69 @@ void deleteMedia(vector<media> mediaVtr, char *searchCommand){
 
   return;
 }
-void addMedia(vector<media> mediaVtr, char type){
+void addMedia(vector<media> mediaVtr, int typeOfMedia){
   int minutesLocal = 0;
   int secondsLocal = 0;
   int yearLocal = 0;
-  char ratingLocal[3]; //max letter count for rating is PG + null = 3
+  char ratingLocal[6]; 
   
   //adding movie
-  if(type == 'a'){
+  if(typeOfMedia == 1){
     Movies* movie = new Movies();
     cout << "Enter the title of the movie: " << endl;
     cin.get(movie->getTitle(), 100);
-    cin.get();
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << "Enter the year it was made: " << endl;
     cin >> yearLocal;
-    cin.get();
+    cin.clear();
     movie->setYear(yearLocal);
+    cin.ignore(10000, '\n');
     cout << "Enter the director: " << endl;
     cin.get(movie->getDirector(), 100);
-    cin.get();
+    cin.clear();
+    cin.ignore(10000, '\n');
     cout << "Enter the duration in minutes and seconds." << endl;
     cout << "FIRST enter the duration in minutes (seconds later): " << endl;
     cin >> minutesLocal;
     cout << "Now enter seconds: " << endl;
     cin >> secondsLocal;
     movie->setDuration(minutesLocal, secondsLocal);
-    cout << "Enter the rating: (ex PG, G, R..)" << endl;
-    cin >> ratingLocal;
+    cin.ignore(10000, '\n');
+    cout << "Enter the rating: " << endl;
+    cout << "Possible ratings include G, PG, PG-13, R, NR. " << endl;
+    cin.get(ratingLocal, 6);
+    cin.clear();
+    cin.ignore(10000, '\n');
     movie->setRating(ratingLocal);
     mediaVtr.push_back(*movie);
+    cout << "Movie added." << endl;
   }
 
   //adding video game
-  if(type == 'b'){
+  if(typeOfMedia == 2){
     VideoGames *vg = new VideoGames();
     cout << "Enter the title of the video game: " << endl;
     cin.get(vg->getTitle(), 100);
     cin.get();
     cout << "Enter the year it was released: " << endl;
     cin >> yearLocal;
+    cin.get();
     vg->setYear(yearLocal);
     cout << "Enter the publisher of the video game: " << endl;
     cin.get(vg->getPublisher(), 100);
     cin.get();
     cout << "Enter the rating of the video game: " << endl;
-    cin >> ratingLocal;
+    cout << "Possible video game ratings: E10+, E, EC, T, M, RP, AO" << endl;
+    cin.get(ratingLocal, 6);
+    cin.get();
     vg->setRating(ratingLocal);
     mediaVtr.push_back(*vg);
+    cout << "Video game added." << endl;
   }
 
   //adding music
-  if(type == 'c'){
+  if(typeOfMedia == 3){
     Music *m = new Music();
     cout << "Enter the title of the song: " << endl;
     cin.get(m->getTitle(), 100);
@@ -104,7 +116,7 @@ void addMedia(vector<media> mediaVtr, char type){
     cout << "Enter the publisher of the song: " << endl;
     cin.get(m->getPublisher(), 100);
     cin.get();
-    
+    cout << "Music added." << endl;    
     
   }
     return;
@@ -152,7 +164,7 @@ int main(){
   //vector containing Parent class: media
   vector<media> mediaVtr;
   char type[20]; //contains what type of media user wants to add
-  char typeOfMedia = 'a'; //either a) movie b) video game or c) music
+  int typeOfMedia = 0; //either 1) movie 2) video game or 3) music
   cout << "Welcome to the media database." << endl;
   char command[7];
   
@@ -173,27 +185,34 @@ int main(){
     if(isLegal == true){
       
       if(strcmp(command, "ADD") == 0){
-	cout << "What type of media? (movie/video game/music)" << endl;
-	cin.get(type, 20);
-	cin.get();
+	// Start while here
+
+	do {
 	
-	//format to upper
-	for(int i = 0; i < strlen(type); i++){
-	  type[i] = toupper(type[i]);
-	}
-	//make sure input is a valid type
-	mediaValid = mediaValidCheck(type);
-	while (mediaValid != true){
-	  if(strcmp(type, "MOVIE") == 0){
-	    typeOfMedia = 'a';
+	  cout << "What type of media? (movie/video game/music)" << endl;
+	  cin.get(type, 20);
+	  cin.get();
+	
+	  //format to upper
+	  for(int i = 0; i < strlen(type); i++){
+	    type[i] = toupper(type[i]);
 	  }
-	  else if(strcmp(type, "VIDEO GAME") == 0){
-	    typeOfMedia = 'b';
+	  //make sure input is a valid type
+	  mediaValid = mediaValidCheck(type);
+	  if (mediaValid == true) {
+	    //
+	    //while (mediaValid != true){
+	    if(strcmp(type, "MOVIE") == 0){
+	      typeOfMedia = 1;
+	    }
+	    else if(strcmp(type, "VIDEO GAME") == 0){
+	      typeOfMedia = 2;
+	    }
+	    else if(strcmp(type, "MUSIC") == 0){
+	      typeOfMedia = 3;
+	    }
 	  }
-	  else if(strcmp(type, "MUSIC") == 0){
-	    typeOfMedia = 'c';
-	  }
-	}
+	} while (mediaValid == false); // end while 
 	//valid input (out of while loop)
 	addMedia(mediaVtr, typeOfMedia);
       }

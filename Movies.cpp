@@ -11,7 +11,26 @@ Movies::duration_t Movies::getDuration(){
 }
 
 int Movies::setRating(char* inputRating){
-  rating = inputRating;
+  char option = 'a';
+  if(strcmp(inputRating, "G") == 0){
+    option = 'a';
+  }
+  else if(strcmp(inputRating, "PG") == 0){
+    option = 'b';
+  }
+  else if(strcmp(inputRating, "PG-13") == 0){
+    option = 'c';
+  }
+  else if(strcmp(inputRating, "R") == 0){
+    option = 'd';
+  }
+  else if(strcmp(inputRating, "NR") == 0){
+    option = 'e';
+  }
+  else{
+    cout << "That is not a valid movie rating." << endl;
+  }
+  rating = option;
   return 0;
 }
 
@@ -23,5 +42,23 @@ int Movies::setDuration(int mins, int seconds){
 }
 
 char* Movies::getRating(){
-  return rating;
+  if(rating == 'a'){
+    return "G";
+  }
+  else if(rating == 'b'){
+    return "PG";
+  }
+  else if(rating == 'c'){
+    return "PG-13";
+  }
+  else if(rating == 'd'){
+    return "R";
+  }
+  else if(rating == 'e'){
+    return "NR";
+  }
+  else{
+    return NULL;
+  }
 }
+

@@ -13,10 +13,10 @@ public:
   char* getRating();
   int setRating(char* inputRating);
   int setDuration(int mins, int seconds);  
-private:
 
+private:
   char director[100];
   duration_t duration;
-  char rating[3];
+  char rating;
 
 };

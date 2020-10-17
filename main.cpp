@@ -5,7 +5,6 @@
  */
 
 #include <iostream>
-//#include "media.h"
 #include "VideoGames.h"
 #include "Music.h"
 #include "Movies.h"
@@ -21,12 +20,29 @@ void deleteMedia(vector<media> mediaVtr, char *searchCommand);
 void addMedia(vector<media> mediaVtr, int typeOfMedia);
 bool mediaValidCheck(char *type);
 
-char* searchMedia(vector<media> mediaVtr, char *searchCommand){
+char* searchMedia(vector<media> mediaVtr, char *searchCommand){ //searchCommand is a title or year
+  vector<media> *vptr = &mediaVtr;
+  int nameOfClass;
   //iterate thru vector
-  // for(vector<media>::iterator index = mediaVtr.begin(); index!=mediaVtr.end(); ++index){
-    
+   for(vector<media>::iterator index = vptr->begin(); index!=vptr->end(); ++index){
+     if(strcmp(index->getTitle(), searchCommand) == 0){
+       nameOfClass = typeid(index);
+       cout << "Title: " << index->getTitle() << endl;
+       cout << "Year: " << index->getYear() << endl;
+       if(nameOfClass == "Movie"){
 
-  // }
+       }
+       else if(nameOfClass == "VideoGames"){
+
+       }
+       else if(nameOfClass == "Music"){
+
+       }
+       else { //something isn't right if it's else..
+	 cout << "ERROR: could not find class name. " << endl;
+       }
+     }
+  }
   return NULL; 
 }
 
@@ -189,7 +205,6 @@ int main(){
 	// Start while here
 
 	do {
-	
 	  cout << "What type of media? (movie/video game/music)" << endl;
 	  cin.get(type, 20);
 	  cin.get();
@@ -226,13 +241,13 @@ int main(){
 	  cout << "Enter a Title: " << endl;
 	  cin.get(TorY, 100);
 	  cin.get();
-	  searchMedia(mediaVtr, *TorY);
+	  searchMedia(mediaVtr, TorY);
 	}
 	if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
 	  cout << "Enter a year: " << endl;
 	  cin.get(TorY, 100);
 	  cin.get();
-	  searchMedia(mediaVtr, *TorY);	  
+	  searchMedia(mediaVtr, TorY);	  
 	}
 
        }

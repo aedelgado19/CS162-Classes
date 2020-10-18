@@ -17,6 +17,7 @@ public:
     
   //constructor
   Movies();
+  ~Movies();
 private:
   char director[100];
   duration_t duration;

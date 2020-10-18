@@ -9,6 +9,7 @@ public:
   int setType(int inputType);
   int getType();
   int type;
+  virtual ~media();
 private:
   //store fields
   char title[100];

@@ -26,15 +26,20 @@ bool mediaValidCheck(char *type);
 
 char* searchMedia(vector<media> mediaVtr, char *searchCommand, char *search){ //searchCommand is a title or year
   vector<media> *vptr = &mediaVtr;
-  //cout << "title searched: " << search << endl;
   //iterate thru vector
   for(vector<media>::iterator index = vptr->begin(); index!=vptr->end(); ++index){
+    dynamic_cast<Movies*>(index);
+    
+    
     if(strcmp(index->getTitle(), search) == 0){
        cout << "Title: " << index->getTitle() << endl;
        cout << "Year: " << index->getYear() << endl;
              
        if(index->getType() == MOVIES){
-	 
+	 cout << "Director: " << index->getDirector() << endl;
+	 cout << "Rating: " << index->getRating() << endl;
+	 cout << "Duration: " << index->getDuration() << endl;
+	 cout << " " << endl;
        }
        else if(index->getType() == VIDEOGAMES){
 	 

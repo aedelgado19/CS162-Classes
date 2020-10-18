@@ -6,6 +6,11 @@ char* Music::getArtist(){
   return artist;
 }
 
+void Music::setArtist(char* inputArtist){
+  strcpy(inputArtist, artist);
+  return;
+}
+
 Music::duration_t Music::getDuration(){
   return duration;
 }
@@ -18,5 +23,9 @@ int Music::setDuration(int mins, int seconds){
 
 char* Music::getPublisher(){
   return publisher;
+}
 
+void Music::setPublisher(char* inputPublisher){
+  strcpy(inputPublisher, publisher);
+  return;
 }

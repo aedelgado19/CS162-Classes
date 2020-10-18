@@ -6,6 +6,7 @@ class VideoGames : public media{
 
 public:
   char* getPublisher();
+  void setPublisher(char* inputPublisher);
   char* getRating();
   int setRating(char* inputRating);
 private:

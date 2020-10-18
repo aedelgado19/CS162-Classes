@@ -3,6 +3,11 @@
 
 using namespace std;
 
+void VideoGames::setPublisher(char* inputPublisher){
+  strcpy(inputPublisher, publisher);
+  return;
+}
+
 char* VideoGames::getPublisher(){
   return publisher;
 }

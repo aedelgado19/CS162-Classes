@@ -9,10 +9,11 @@ public:
     int seconds;
   };
   char* getArtist();
+  void setArtist(char* inputArtist);
   int setDuration(int mins, int seconds);
   duration_t getDuration();
   char* getPublisher();
-
+  void setPublisher(char* inputPublisher);
 private:
   char artist[100];
   duration_t duration;

@@ -9,11 +9,12 @@ public:
     int seconds;
   };
   char* getDirector();
+  void setDirector(char* inputDirector);
   duration_t getDuration();
   char* getRating();
   int setRating(char* inputRating);
   int setDuration(int mins, int seconds);  
-
+    
   //constructor
   Movies();
 private:

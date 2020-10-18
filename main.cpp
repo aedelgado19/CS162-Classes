@@ -34,7 +34,8 @@ char* searchMedia(vector<media> mediaVtr, char *searchCommand, char *search){ //
        cout << "Year: " << index->getYear() << endl;
              
        if(index->getType() == MOVIES){
-	 cout << "Director: " << dynamic_cast<Movies*>(&index)->getDirector() << endl;
+	 Movies *mptr = (Movies*) &index;
+	 cout << "Director: " << mptr->getDirector() << endl;
 	 //cout << "Rating: " << dynamic_cast<Movies*>(*index)->getRating() << endl;
 	 //cout << "Duration: " << dynamic_cast<Movies*>(*index)->getDuration() << endl;
 	 cout << " " << endl;

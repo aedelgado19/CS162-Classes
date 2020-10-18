@@ -3,6 +3,14 @@
 #include <cstring>
 using namespace std;
 
+const char* E10_RATING = "E10+";
+const char* E_RATING = "E";
+const char* EC_RATING = "EC";
+const char* T_RATING = "T";
+const char* M_RATING = "M";
+const char* RP_RATING = "RP";
+const char* AO_RATING = "AO";
+
 void VideoGames::setPublisher(char* inputPublisher){
   strcpy(inputPublisher, publisher);
   return;

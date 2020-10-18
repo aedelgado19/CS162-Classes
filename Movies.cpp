@@ -5,6 +5,11 @@
 
 using namespace std;
 
+const char* G_RATING = "G";
+const char* PG_RATING = "PG";
+const char* PG13_RATING = "PG-13";
+const char* R_RATING = "R";
+const char* NR_RATING = "NR";
 char* Movies::getDirector(){
   return director;
 }

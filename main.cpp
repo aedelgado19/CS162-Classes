@@ -1,5 +1,5 @@
-/*Author: Allison DelgadoAA
- * Last updated: October 17
+/*Author: Allison Delgado
+ * Last updated: October 18
  * Classes is a project that serves as a media database holding music vids,
  * movies, and songs to practice using classes and inheritance.
  */
@@ -36,8 +36,8 @@ char* searchMedia(vector<media> mediaVtr, char *searchCommand, char *search){ //
        if(index->getType() == MOVIES){
 	 Movies *mptr = (Movies*) &index;
 	 cout << "Director: " << mptr->getDirector() << endl;
-	 //cout << "Rating: " << dynamic_cast<Movies*>(*index)->getRating() << endl;
-	 //cout << "Duration: " << dynamic_cast<Movies*>(*index)->getDuration() << endl;
+	 //cout << "Rating: " << 
+	 //cout << "Duration: " <<
 	 cout << " " << endl;
        }
        else if(index->getType() == VIDEOGAMES){

@@ -12,7 +12,7 @@ const char* RP_RATING = "RP";
 const char* AO_RATING = "AO";
 
 void VideoGames::setPublisher(char* inputPublisher){
-  strcpy(inputPublisher, publisher);
+  strcpy(publisher, inputPublisher);
   return;
 }
 

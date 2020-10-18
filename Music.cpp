@@ -7,7 +7,7 @@ char* Music::getArtist(){
 }
 
 void Music::setArtist(char* inputArtist){
-  strcpy(inputArtist, artist);
+  strcpy(artist, inputArtist);
   return;
 }
 
@@ -26,6 +26,6 @@ char* Music::getPublisher(){
 }
 
 void Music::setPublisher(char* inputPublisher){
-  strcpy(inputPublisher, publisher);
+  strcpy(publisher, inputPublisher);
   return;
 }

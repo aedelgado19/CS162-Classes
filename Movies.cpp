@@ -11,11 +11,12 @@ const char* PG13_RATING = "PG-13";
 const char* R_RATING = "R";
 const char* NR_RATING = "NR";
 char* Movies::getDirector(){
+  cout << director;
   return director;
 }
 
 void Movies::setDirector(char* inputDirector){
-  strcpy(inputDirector, director);
+  strcpy(director, inputDirector);
   return;
 }
 

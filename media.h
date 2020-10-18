@@ -1,5 +1,5 @@
 //header file for Parent class: media
-#pragma once
+#pragma once 
 
 class media{
 public:
@@ -10,7 +10,7 @@ public:
   int getType();
   int type;
   // ~media();
-  virtual int setRating(char* inputRating);
+  //  virtual int setRating(char* inputRating);
 private:
   //store fields
   char title[100];

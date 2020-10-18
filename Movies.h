@@ -1,11 +1,11 @@
 //header file for child class: movies
 #include "media.h"
 
-const char* G_rating = "G";
-const char* PG_rating = "PG";
-const char* PG13_rating = "PG-13";
-const char* R_rating = "R";
-const char* NR_rating = "NR";
+const char* G_RATING = "G";
+const char* PG_RATING = "PG";
+const char* PG13_RATING = "PG-13";
+const char* R_RATING = "R";
+const char* NR_RATING = "NR";
 class Movies : public media {
 public:
   struct duration_t{
@@ -16,7 +16,7 @@ public:
   void setDirector(char* inputDirector);
   duration_t getDuration();
   const char* getRating();
-  virtual int setRating(char* inputRating);
+  const int setRating(char* inputRating);
   int setDuration(int mins, int seconds);  
     
   //constructor

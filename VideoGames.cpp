@@ -1,6 +1,6 @@
 #include <iostream>
 #include "VideoGames.h"
-
+#include <cstring>
 using namespace std;
 
 void VideoGames::setPublisher(char* inputPublisher){
@@ -44,25 +44,25 @@ int VideoGames::setRating(char* inputRating){
 
 const char* VideoGames::getRating(){
   if(rating == 'a'){
-    return E10_rating;
+    return E10_RATING;
   }
   else if(rating == 'b'){
-    return E_rating;
+    return E_RATING;
   }
   else if(rating == 'c'){
-    return EC_rating;
+    return EC_RATING;
   }
   else if(rating == 'd'){
-    return T_rating;
+    return T_RATING;
   }
   else if(rating == 'e'){
-    return M_rating;
+    return M_RATING;
   }
   else if(rating == 'f'){
-    return RP_rating;
+    return RP_RATING;
   }
   else if(rating == 'g'){
-    return AO_rating;
+    return AO_RATING;
   }
   else{
     return NULL;

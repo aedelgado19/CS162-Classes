@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Movies.h"
+#include <cstring>
 #define MOVIES 1
 
 using namespace std;
@@ -53,19 +54,19 @@ int Movies::setDuration(int mins, int seconds){
 
 const char* Movies::getRating(){
   if(rating == 'a'){
-    return G_rating;
+    return G_RATING;
   }
   else if(rating == 'b'){
-    return PG_rating;
+    return PG_RATING;
   }
   else if(rating == 'c'){
-    return PG13_rating;
+    return PG13_RATING;
   }
   else if(rating == 'd'){
-    return R_rating;
+    return R_RATING;
   }
   else if(rating == 'e'){
-    return NR_rating;
+    return NR_RATING;
   }
   else{
     return NULL;

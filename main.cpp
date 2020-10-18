@@ -1,4 +1,4 @@
-/*Author: Allison DelgadoA
+/*Author: Allison DelgadoAA
  * Last updated: October 17
  * Classes is a project that serves as a media database holding music vids,
  * movies, and songs to practice using classes and inheritance.

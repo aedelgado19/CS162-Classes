@@ -1,6 +1,7 @@
 //Parent class
 
 #include <iostream>
+#include <cstring>
 #include "media.h"
 #define MOVIES 1
 #define VIDEOGAMES 2
@@ -30,3 +31,9 @@ int media::setType(int inputType){
 int media::getType(){
   return type;
 }
+
+int media::setTitle(char* inputTitle) {
+  strcpy(title, inputTitle);
+  return 0;
+}
+

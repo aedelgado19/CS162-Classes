@@ -14,6 +14,7 @@ public:
   duration_t getDuration();
   char* getPublisher();
   void setPublisher(char* inputPublisher);
+  int setRating(const char*);
 private:
   char artist[100];
   duration_t duration;

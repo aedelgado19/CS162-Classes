@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "Music.h"
 using namespace std;
 

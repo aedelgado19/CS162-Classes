@@ -11,7 +11,6 @@ const char* PG13_RATING = "PG-13";
 const char* R_RATING = "R";
 const char* NR_RATING = "NR";
 char* Movies::getDirector(){
-  cout << director;
   return director;
 }
 
@@ -20,7 +19,7 @@ void Movies::setDirector(char* inputDirector){
   return;
 }
 
-Movies::duration_t Movies::getDuration(){
+duration_t Movies::getDuration(){
   return duration;
 }
 

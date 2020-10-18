@@ -5,11 +5,12 @@ class media{
 public:
   int getYear();
   char* getTitle();
+  int setTitle(char* inputTitle);
   int setYear(int inputYear);
   int setType(int inputType);
   int getType();
   int type;
-  // ~media();
+  virtual ~media() {};
   //  virtual int setRating(char* inputRating);
 private:
   //store fields

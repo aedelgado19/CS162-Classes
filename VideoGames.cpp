@@ -42,27 +42,27 @@ int VideoGames::setRating(char* inputRating){
   return 0;
 }
 
-char* VideoGames::getRating(){
+const char* VideoGames::getRating(){
   if(rating == 'a'){
-    return "E10+";
+    return E10_rating;
   }
   else if(rating == 'b'){
-    return "E";
+    return E_rating;
   }
   else if(rating == 'c'){
-    return "EC";
+    return EC_rating;
   }
   else if(rating == 'd'){
-    return "T";
+    return T_rating;
   }
   else if(rating == 'e'){
-    return "M";
+    return M_rating;
   }
   else if(rating == 'f'){
-    return "R";
+    return RP_rating;
   }
   else if(rating == 'g'){
-    return "AO";
+    return AO_rating;
   }
   else{
     return NULL;

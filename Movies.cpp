@@ -51,21 +51,21 @@ int Movies::setDuration(int mins, int seconds){
 
 
 
-char* Movies::getRating(){
+const char* Movies::getRating(){
   if(rating == 'a'){
-    return "G";
+    return G_rating;
   }
   else if(rating == 'b'){
-    return "PG";
+    return PG_rating;
   }
   else if(rating == 'c'){
-    return "PG-13";
+    return PG13_rating;
   }
   else if(rating == 'd'){
-    return "R";
+    return R_rating;
   }
   else if(rating == 'e'){
-    return "NR";
+    return NR_rating;
   }
   else{
     return NULL;

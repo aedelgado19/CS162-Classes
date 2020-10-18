@@ -9,7 +9,8 @@ public:
   int setType(int inputType);
   int getType();
   int type;
-  virtual ~media();
+  // ~media();
+  virtual int setRating(char* inputRating);
 private:
   //store fields
   char title[100];

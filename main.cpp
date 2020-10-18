@@ -28,24 +28,30 @@ char* searchMedia(vector<media> mediaVtr, char *searchCommand, char *search){ //
   vector<media> *vptr = &mediaVtr;
   //iterate thru vector
   for(vector<media>::iterator index = vptr->begin(); index!=vptr->end(); ++index){
-    dynamic_cast<Movies*>(index);
-    
     
     if(strcmp(index->getTitle(), search) == 0){
        cout << "Title: " << index->getTitle() << endl;
        cout << "Year: " << index->getYear() << endl;
              
        if(index->getType() == MOVIES){
-	 cout << "Director: " << index->getDirector() << endl;
-	 cout << "Rating: " << index->getRating() << endl;
-	 cout << "Duration: " << index->getDuration() << endl;
+	 cout << "Director: " << dynamic_cast<Movies*>(&index)->getDirector() << endl;
+	 //cout << "Rating: " << dynamic_cast<Movies*>(*index)->getRating() << endl;
+	 //cout << "Duration: " << dynamic_cast<Movies*>(*index)->getDuration() << endl;
 	 cout << " " << endl;
        }
        else if(index->getType() == VIDEOGAMES){
-	 
+	 /* cout << "Publisher: " <<
+	    cout << "Rating: " <<
+	  */
        }
        else if(index->getType() == MUSIC){
-
+	 /*
+	   cout << "Artist: " <<
+	   cout << "Duration: " <<
+	   cout << "Publisher: " <<
+	   
+	  */
+	 
        }
        else { //something isn't right if it's else..
 	 cout << "ERROR: could not find class name. " << endl;

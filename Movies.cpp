@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Movies.h"
+#define MOVIES 1
+
 using namespace std;
 
 char* Movies::getDirector(){
@@ -62,3 +64,8 @@ char* Movies::getRating(){
   }
 }
 
+//constructor
+Movies::Movies(){
+  cout << "constructor" << endl;
+  setType(MOVIES);
+}

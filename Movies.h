@@ -14,6 +14,8 @@ public:
   int setRating(char* inputRating);
   int setDuration(int mins, int seconds);  
 
+  //constructor
+  Movies();
 private:
   char director[100];
   duration_t duration;

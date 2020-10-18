@@ -6,6 +6,9 @@ public:
   int getYear();
   char* getTitle();
   int setYear(int inputYear);
+  int setType(int inputType);
+  int getType();
+  int type;
 private:
   //store fields
   char title[100];

@@ -1,5 +1,5 @@
-/*Author: Allison Delgado
- * Last updated: October 13
+/*Author: Allison DelgadoA
+ * Last updated: October 17
  * Classes is a project that serves as a media database holding music vids,
  * movies, and songs to practice using classes and inheritance.
  */
@@ -10,32 +10,36 @@
 #include "Movies.h"
 #include <vector>
 #include <cstring>
+
+#define MOVIES 1
+#define VIDEOGAMES 2
+#define MUSIC 3
 using namespace std;
 
 //function prototypes
 bool checkLegal(char *command);
 void quit();
-char* searchMedia(vector<media> mediaVtr, char *searchCommand);
+char* searchMedia(vector<media> mediaVtr, char *searchCommand, char *search);
 void deleteMedia(vector<media> mediaVtr, char *searchCommand);
-void addMedia(vector<media> mediaVtr, int typeOfMedia);
+void addMedia(vector<media> *vtrptr, int typeOfMedia);
 bool mediaValidCheck(char *type);
 
-char* searchMedia(vector<media> mediaVtr, char *searchCommand){ //searchCommand is a title or year
+char* searchMedia(vector<media> mediaVtr, char *searchCommand, char *search){ //searchCommand is a title or year
   vector<media> *vptr = &mediaVtr;
-  int nameOfClass;
+  //cout << "title searched: " << search << endl;
   //iterate thru vector
-   for(vector<media>::iterator index = vptr->begin(); index!=vptr->end(); ++index){
-     if(strcmp(index->getTitle(), searchCommand) == 0){
-       nameOfClass = typeid(index);
+  for(vector<media>::iterator index = vptr->begin(); index!=vptr->end(); ++index){
+    if(strcmp(index->getTitle(), search) == 0){
        cout << "Title: " << index->getTitle() << endl;
        cout << "Year: " << index->getYear() << endl;
-       if(nameOfClass == "Movie"){
-
+             
+       if(index->getType() == MOVIES){
+	 
        }
-       else if(nameOfClass == "VideoGames"){
-
+       else if(index->getType() == VIDEOGAMES){
+	 
        }
-       else if(nameOfClass == "Music"){
+       else if(index->getType() == MUSIC){
 
        }
        else { //something isn't right if it's else..
@@ -51,7 +55,7 @@ void deleteMedia(vector<media> mediaVtr, char *searchCommand){
 
   return;
 }
-void addMedia(vector<media> mediaVtr, int typeOfMedia){
+void addMedia(vector<media> *vtrptr, int typeOfMedia){
   int minutesLocal = 0;
   int secondsLocal = 0;
   int yearLocal = 0;
@@ -60,6 +64,7 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
   //adding movie
   if(typeOfMedia == 1){
     Movies* movie = new Movies();
+    
     cout << "Enter the title of the movie: " << endl;
     cin.get(movie->getTitle(), 100);
     cin.clear();
@@ -86,7 +91,7 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
     cin.clear();
     cin.ignore(10000, '\n');
     movie->setRating(ratingLocal);
-    mediaVtr.push_back(*movie);
+    vtrptr->push_back(*movie);
     cout << "Movie added." << endl;
   }
 
@@ -108,7 +113,7 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
     cin.get(ratingLocal, 6);
     cin.get();
     vg->setRating(ratingLocal);
-    mediaVtr.push_back(*vg);
+    vtrptr->push_back(*vg);
     cout << "Video game added." << endl;
   }
 
@@ -135,7 +140,7 @@ void addMedia(vector<media> mediaVtr, int typeOfMedia){
     cin.get(m->getPublisher(), 100);
     cin.get();
     cout << "Music added." << endl;    
-    
+    cout << "fixme - need to add pushback" << endl;
   }
     return;
 }
@@ -180,6 +185,7 @@ bool mediaValidCheck(char *type){
 int main(){
   //vector containing Parent class: media
   vector<media> mediaVtr;
+  vector<media>* vtrptr = &mediaVtr;
   char type[20]; //contains what type of media user wants to add
   int typeOfMedia = 0; //either 1) movie 2) video game or 3) music
   cout << "Welcome to the media database." << endl;
@@ -190,7 +196,7 @@ int main(){
     cin.get(command, 7);
     cin.get();
     char searchCommands[6]; //either title or year
-    char TorY[100]; //title of media or year of media
+    char search[100]; //title of media or year of media
     bool mediaValid = false;
     
     //format to all uppercase
@@ -230,7 +236,7 @@ int main(){
 	  }
 	} while (mediaValid == false); // end while 
 	//valid input (out of while loop)
-	addMedia(mediaVtr, typeOfMedia);
+	addMedia(vtrptr, typeOfMedia);
       }
 
        if(strcmp(command, "SEARCH") == 0){
@@ -239,15 +245,15 @@ int main(){
 	cin.get();
 	if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
 	  cout << "Enter a Title: " << endl;
-	  cin.get(TorY, 100);
+	  cin.get(search, 100);
 	  cin.get();
-	  searchMedia(mediaVtr, TorY);
+	  searchMedia(mediaVtr, searchCommands, search);
 	}
 	if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
 	  cout << "Enter a year: " << endl;
-	  cin.get(TorY, 100);
+	  cin.get(search, 100);
 	  cin.get();
-	  searchMedia(mediaVtr, TorY);	  
+	  searchMedia(mediaVtr, searchCommands, search);	  
 	}
 
        }

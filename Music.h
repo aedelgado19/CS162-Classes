@@ -13,6 +13,9 @@ public:
   void setPublisher(char* inputPublisher);
   int setRating(const char*);
 
+  //destructor
+  ~Music();
+  
   //store contents privately
 private:
   char artist[100];

@@ -12,7 +12,8 @@ public:
   int setRating(char* inputRating);
   int setDuration(int mins, int seconds);  
   Movies(); //constructor used to set type
-
+  ~Movies(); //deconstructor
+  
   //store contents privately
 private:
   char director[100];

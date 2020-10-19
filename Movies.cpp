@@ -98,3 +98,9 @@ const char* Movies::getRating(){
 Movies::Movies(){
   setType(MOVIES);
 }
+
+
+//destructor
+Movies::~Movies(){
+  cout << "Movie has been deleted." << endl;
+}

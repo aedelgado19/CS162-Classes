@@ -150,7 +150,7 @@ void deleteMedia(vector<media*> *mediaVtr){
 	cin.get();
 	if (strcmp(verify, "y") == 0 || strcmp(verify, "Y") == 0){
 	  mediaVtr->erase(index);
-	  cout << "Movie has been deleted." << endl;
+	  delete (dynamic_cast<Movies*>(*index));
 	  return;
 	}
 	else{
@@ -171,7 +171,7 @@ void deleteMedia(vector<media*> *mediaVtr){
 	cin.get();
 	if (strcmp(verify, "y") == 0 || strcmp(verify, "Y") == 0){
 	  mediaVtr->erase(index);
-	  cout << "Video game has been deleted." << endl;
+	  delete (dynamic_cast<VideoGames*>(*index));
 	  return;
 	}
 	else{
@@ -193,7 +193,7 @@ void deleteMedia(vector<media*> *mediaVtr){
 	cin.get();
 	if (strcmp(verify, "y") == 0 || strcmp(verify, "Y") == 0){
 	  mediaVtr->erase(index);
-	  cout << "Song has been deleted." << endl;
+	  delete (dynamic_cast<Music*>(*index));
 	  return;
 	}
 	else{

@@ -10,6 +10,8 @@ public:
   const char* getRating();
   int setRating(char* inputRating);
 
+  //destructor
+  ~VideoGames();
   //privately store contents
 private:
   char title[100];

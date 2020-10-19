@@ -35,3 +35,8 @@ void Music::setPublisher(char* inputPublisher){
   strcpy(publisher, inputPublisher);
   return;
 }
+
+//destructor
+Music::~Music(){
+  cout << "Song has been deleted." << endl;
+}

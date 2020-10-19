@@ -88,3 +88,9 @@ const char* VideoGames::getRating(){
     return NULL;
   }
 }
+
+
+//destructor
+VideoGames::~VideoGames(){
+  cout << "Video game deleted." << endl;
+}

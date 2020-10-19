@@ -10,7 +10,6 @@
 #include "Movies.h"
 #include <vector>
 #include <cstring>
-
 #define MOVIES 1
 #define VIDEOGAMES 2
 #define MUSIC 3
@@ -24,21 +23,26 @@ void deleteMedia(vector<media*> *mediaVtr);
 void addMedia(vector<media*> *vtrptr, int typeOfMedia);
 bool mediaValidCheck(char *type);
 
+//search for media based on title or year
 char* searchMedia(vector<media*> *mediaVtr){
-  
   duration_t duration;
-  char searchTitle[100];
-  int searchYear = 0;
-  char searchCommands[100];
+  char searchTitle[100]; //title searched
+  int searchYear = 0; //year searched
+  char searchCommands[100]; 
+
   //ask user input
   cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
   cin.get(searchCommands, 6);
   cin.get();
+
+  //searching by title
   if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
     cout << "Enter a Title: " << endl;
     cin.get(searchTitle, 100);
     cin.get();
   }
+
+  //searching by year
   else if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
     cout << "Enter a year: " << endl;
     cin >> searchYear;
@@ -47,13 +51,18 @@ char* searchMedia(vector<media*> *mediaVtr){
   else {
     cout << "invalid input." << endl;
   }
-  
+
+  //iterate through vector of media pointers
   for(vector<media*>::iterator index = mediaVtr->begin(); index!=mediaVtr->end(); ++index){
 
+    //if title matches title of what index points to or year matches year...
     if(strcmp((*index)->getTitle(), searchTitle) == 0 || (*index)->getYear() == searchYear){
+
+      //print out commonalities from all 3 child classes (title and year)
       cout << "Title: " << (*index)->getTitle() << endl;
       cout << "Year: " << (*index)->getYear() << endl;
-             
+
+      //now check if movie, and if so print out movie contents
       if((*index)->getType() == MOVIES){
 	cout << "Type: Movie" << endl;
 	cout << "Director: " << (dynamic_cast<Movies*>(*index))->getDirector() << endl;
@@ -62,12 +71,16 @@ char* searchMedia(vector<media*> *mediaVtr){
 	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl;
 	cout << " " << endl;
        }
+
+      //if video game, print out video game contents
       else if((*index)->getType() == VIDEOGAMES){
 	cout << "Type: video game" << endl;
 	cout << "Publisher: " << (dynamic_cast<VideoGames*>(*index))->getPublisher() << endl;
 	cout << "Rating: " << (dynamic_cast<VideoGames*>(*index))->getRating() << endl;
 	cout << " " << endl;
        }
+
+      //if music, print out music contents
       else if((*index)->getType() == MUSIC){
 	cout << "Type: music" << endl;
        	cout << "Artist: " << (dynamic_cast<Music*>(*index))->getArtist() << endl;
@@ -85,6 +98,7 @@ char* searchMedia(vector<media*> *mediaVtr){
   return NULL; 
 }
 
+//delete media by searching title or year
 void deleteMedia(vector<media*> *mediaVtr){
   char verify[2]; //either y or n
   //basically the same algorithm as searchMedia
@@ -96,11 +110,15 @@ void deleteMedia(vector<media*> *mediaVtr){
   cout << "To delete: search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
   cin.get(searchCommands, 6);
   cin.get();
+
+  //search by title
   if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
     cout << "Enter a Title: " << endl;
     cin.get(searchTitle, 100);
     cin.get();
   }
+
+  //search by year
   else if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
     cout << "Enter a year: " << endl;
     cin >> searchYear;
@@ -109,19 +127,24 @@ void deleteMedia(vector<media*> *mediaVtr){
   else {
     cout << "invalid input." << endl;
   }
-  
+
+  //iterate through vector of media pointers to find user's search
   for(vector<media*>::iterator index = mediaVtr->begin(); index!=mediaVtr->end(); ++index){
 
+    //if fields match..
     if(strcmp((*index)->getTitle(), searchTitle) == 0 || (*index)->getYear() == searchYear){
       cout << "Title: " << (*index)->getTitle() << endl;
       cout << "Year: " << (*index)->getYear() << endl;
-             
+
+      //for movies..
       if((*index)->getType() == MOVIES){
 	cout << "Type: Movie" << endl;
 	cout << "Director: " << (dynamic_cast<Movies*>(*index))->getDirector() << endl;
 	cout << "Rating: " << (dynamic_cast<Movies*>(*index))->getRating() << endl;
 	duration = (dynamic_cast<Movies*>(*index))->getDuration();
 	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl;
+
+	//verify decision with user
 	cout << "Are you sure you would like to delete this movie? (y/n) " << endl;
 	cin.get(verify, 2);
 	cin.get();
@@ -133,11 +156,15 @@ void deleteMedia(vector<media*> *mediaVtr){
 	  cout << "Movie not deleted. " << endl;
 	}
        }
+
+      //for video games..
       else if((*index)->getType() == VIDEOGAMES){
 	cout << "Type: video game" << endl;
 	cout << "Publisher: " << (dynamic_cast<VideoGames*>(*index))->getPublisher() << endl;
 	cout << "Rating: " << (dynamic_cast<VideoGames*>(*index))->getRating() << endl;
 	cout << " " << endl;
+
+	//verify decision with user
 	cout << "Are you sure you would like to delete this video game? (y/n) " << endl;
 	cin.get(verify, 2);
 	cin.get();
@@ -149,12 +176,16 @@ void deleteMedia(vector<media*> *mediaVtr){
 	  cout << "Video game not deleted. " << endl;
 	}
        }
+
+      //for music..
       else if((*index)->getType() == MUSIC){
 	cout << "Type: music" << endl;
        	cout << "Artist: " << (dynamic_cast<Music*>(*index))->getArtist() << endl;
 	duration = (dynamic_cast<Music*>(*index))->getDuration();
 	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl; 
 	cout << "Publisher: " << (dynamic_cast<Music*>(*index))->getPublisher() << endl;
+
+	//verify decision with user
 	cout << "Are you sure you would like to delete this song? (y/n) " << endl;
 	cin.get(verify, 2);
 	cin.get();
@@ -165,21 +196,20 @@ void deleteMedia(vector<media*> *mediaVtr){
 	else{
 	  cout << "Song not deleted. " << endl;
 	}
-
       }
-      
-       else { //something isn't right if it's else..
+         else { //something isn't right if it's else..
 	 cout << "ERROR: could not find class name. " << endl;
 	 cout << (*index)->getType() << endl;
        }
      }
   }
-  
-  
-
-  return;
+    return;
 }
+
+//add media to vector
 void addMedia(vector<media*> *vtrptr, int typeOfMedia){
+
+  //local variables to pass into class methods
   int minutesLocal = 0;
   int secondsLocal = 0;
   int yearLocal = 0;
@@ -189,8 +219,7 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
   
   //adding movie
   if(typeOfMedia == 1){
-    Movies* movie = new Movies();
-    
+    Movies* movie = new Movies(); //create new movie
     cout << "Enter the title of the movie: " << endl;
     cin.get(titleLocal, 100);
     cin.clear();
@@ -220,29 +249,23 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
     cin.ignore(10000, '\n');
     movie->setRating(ratingLocal);
     movie->setType(MOVIES);
+
+    //push back vector to "upload" contents
     vtrptr->push_back(movie);
     cout << "Movie added." << endl;
-    
   }
-
-  struct duration_t{
-    int mins;
-    int seconds;
-  };
   
 //adding video game
   if(typeOfMedia == 2){
-    VideoGames *vg = new VideoGames();
+    VideoGames *vg = new VideoGames(); //create new Video Game
     cout << "Enter the title of the video game: " << endl;
     cin.get(vg->getTitle(), 100);
     cin.get();
     cout << "Enter the year it was released: " << endl;
     cin >> yearLocal;
-    cin.get();  struct duration_t{
-      int mins;
-      int seconds;
-    };
-    
+    cin.get();
+
+    //ask for user input on video game fields
     vg->setYear(yearLocal);
     cout << "Enter the publisher of the video game: " << endl;
     cin.get(vg->getPublisher(), 100);
@@ -259,7 +282,7 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
 
   //adding music
   if(typeOfMedia == 3){
-    Music *m = new Music();
+    Music *m = new Music(); //new music 
     cout << "Enter the title of the song: " << endl;
     cin.get(m->getTitle(), 100);
     cin.get();
@@ -281,13 +304,14 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
     cin.get();
     cout << "Music added." << endl;    
     m->setType(MUSIC);
-    vtrptr->push_back(m);
+    vtrptr->push_back(m); //push back vector to "upload" contents
   }
     return;
 }
 
 //quit program
 void quit(){
+  //all this function does is say a goodbye statement
   cout << "Quitting program. See you next time!" << endl;
   return;
 }
@@ -306,6 +330,7 @@ bool checkLegal(char *command){
   if(strcmp(command, "SEARCH") == 0){
     return true;
   }
+  //if it's not legal..
   return false;
 }
 
@@ -320,19 +345,21 @@ bool mediaValidCheck(char *type){
   if(strcmp(type, "MUSIC") == 0){
     return true;
   }
+  //if it's not legal...
     return false;
 }
 
 int main(){
+  
   //vector containing Parent class: media
   vector<media*> mediaVtr;
-  // vector<media>* vtrptr = &mediaVtr;
   char type[20]; //contains what type of media user wants to add
   int typeOfMedia = 0; //either 1) movie 2) video game or 3) music
   cout << "Welcome to the media database." << endl;
   char command[7];
-  
+
   while (strcmp(command, "QUIT") != 0){
+    //ask user input for command
     cout << "Enter a command: ADD, SEARCH, DELETE, QUIT" << endl;
     cin.get(command, 7);
     cin.get();
@@ -349,8 +376,7 @@ int main(){
     if(isLegal == true){
       
       if(strcmp(command, "ADD") == 0){
-	// Start while here
-
+	//continuous loop until a valid input is given
 	do {
 	  cout << "What type of media? (movie/video game/music)" << endl;
 	  cin.get(type, 20);
@@ -379,17 +405,20 @@ int main(){
 	//valid input (out of while loop)
 	addMedia(&mediaVtr, typeOfMedia);
       }
-
-       if(strcmp(command, "SEARCH") == 0){
-	 searchMedia(&mediaVtr);
-       }
       
+      //pass in vector of media to search
+      if(strcmp(command, "SEARCH") == 0){
+	searchMedia(&mediaVtr);
+      }
+
+      //pass in vector of media to delete
       if(strcmp(command, "DELETE") == 0){
 	deleteMedia(&mediaVtr);
       }
 
     }
   }
+  //at the end, quit!
   quit();
   return 0;
 }

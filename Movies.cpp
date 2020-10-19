@@ -1,3 +1,5 @@
+//getters and setters for Movies
+
 #include <iostream>
 #include "Movies.h"
 #include <cstring>
@@ -5,15 +7,18 @@
 
 using namespace std;
 
+//constants
 const char* G_RATING = "G";
 const char* PG_RATING = "PG";
 const char* PG13_RATING = "PG-13";
 const char* R_RATING = "R";
 const char* NR_RATING = "NR";
+
 char* Movies::getDirector(){
   return director;
 }
 
+//set saved director to the director passed in from addMedia() in main.cpp
 void Movies::setDirector(char* inputDirector){
   strcpy(director, inputDirector);
   return;
@@ -23,6 +28,7 @@ duration_t Movies::getDuration(){
   return duration;
 }
 
+//set saved rating to the input passed in from addMedia() in main.cpp
 int Movies::setRating(char* inputRating){
   char option = 'a';
   if(strcmp(inputRating, "G") == 0 || strcmp(inputRating, "g") == 0){

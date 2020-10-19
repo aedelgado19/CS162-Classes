@@ -1,4 +1,4 @@
-//header file for Child class: VideoGames
+//header file for Child class: VideoGames. Parent = media
 
 #include "media.h"
 
@@ -9,6 +9,8 @@ public:
   void setPublisher(char* inputPublisher);
   const char* getRating();
   int setRating(char* inputRating);
+
+  //privately store contents
 private:
   char title[100];
   int year;

@@ -3,6 +3,7 @@
 #include <cstring>
 using namespace std;
 
+//constants
 const char* E10_RATING = "E10+";
 const char* E_RATING = "E";
 const char* EC_RATING = "EC";
@@ -11,6 +12,7 @@ const char* M_RATING = "M";
 const char* RP_RATING = "RP";
 const char* AO_RATING = "AO";
 
+//sets saved publisher to inputted publisher from addMedia() in main.cpp
 void VideoGames::setPublisher(char* inputPublisher){
   strcpy(publisher, inputPublisher);
   return;
@@ -20,6 +22,7 @@ char* VideoGames::getPublisher(){
   return publisher;
 }
 
+//save passed in rating to rating
 int VideoGames::setRating(char* inputRating){
   char option = 'a';
   if(strcmp(inputRating, "E10+") == 0){

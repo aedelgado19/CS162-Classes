@@ -14,6 +14,7 @@ int media::getYear(){
 
 }
 
+//set inputted year from addMedia() in main.cpp to saved year
 int media::setYear(int inputYear){
   year = inputYear;
   return 0;
@@ -23,6 +24,8 @@ char* media::getTitle(){
   return title;
 
 }
+
+//set inputted type from addMedia() in main.cpp to saved type of media
 int media::setType(int inputType){
   if (inputType == MOVIES){
     type = 1;
@@ -36,7 +39,7 @@ int media::setType(int inputType){
     type = 3;
     return 3;
   }
-  else{
+  else {
     return 0;
   }
 }
@@ -56,6 +59,7 @@ int media::getType(){
   }
 }
 
+//save inputted title to title
 int media::setTitle(char* inputTitle) {
   strcpy(title, inputTitle);
   return 0;

@@ -1,4 +1,4 @@
-//header file for child class: music
+//header file for child class: music. Parent = media
 #include "media.h"
 
 class Music : public media{
@@ -12,6 +12,8 @@ public:
   char* getPublisher();
   void setPublisher(char* inputPublisher);
   int setRating(const char*);
+
+  //store contents privately
 private:
   char artist[100];
   duration_t duration;

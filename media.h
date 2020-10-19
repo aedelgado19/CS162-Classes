@@ -1,6 +1,7 @@
-//header file for Parent class: media
-#pragma once 
+//header file for Parent class: media. Children = Music, Movies, VideoGames
+#pragma once //only include once per compilation
 
+//struct to hold duration of music and movies
 struct duration_t {
   int mins;
   int seconds;
@@ -15,8 +16,10 @@ public:
   int setType(int inputType);
   int getType();
   int type;
+
+  //virtual deconstructor so that dynamic casting can be used
   virtual ~media() {};
-  //  virtual int setRating(char* inputRating);
+
 private:
   //store fields
   char title[100];

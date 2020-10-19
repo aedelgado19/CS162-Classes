@@ -55,6 +55,7 @@ char* searchMedia(vector<media*> *mediaVtr){
       cout << "Year: " << (*index)->getYear() << endl;
              
       if((*index)->getType() == MOVIES){
+	cout << "Type: Movie" << endl;
 	cout << "Director: " << (dynamic_cast<Movies*>(*index))->getDirector() << endl;
 	cout << "Rating: " << (dynamic_cast<Movies*>(*index))->getRating() << endl;
 	duration = (dynamic_cast<Movies*>(*index))->getDuration();
@@ -62,19 +63,22 @@ char* searchMedia(vector<media*> *mediaVtr){
 	cout << " " << endl;
        }
       else if((*index)->getType() == VIDEOGAMES){
+	cout << "Type: video game" << endl;
 	cout << "Publisher: " << (dynamic_cast<VideoGames*>(*index))->getPublisher() << endl;
 	cout << "Rating: " << (dynamic_cast<VideoGames*>(*index))->getRating() << endl;
 	cout << " " << endl;
        }
       else if((*index)->getType() == MUSIC){
+	cout << "Type: music" << endl;
        	cout << "Artist: " << (dynamic_cast<Music*>(*index))->getArtist() << endl;
-	//duration = (dynamic_cast<Music*>(*index))->getDuration();
+	duration = (dynamic_cast<Music*>(*index))->getDuration();
 	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl; 
 	cout << "Publisher: " << (dynamic_cast<Music*>(*index))->getPublisher() << endl;
       }
       
        else { //something isn't right if it's else..
 	 cout << "ERROR: could not find class name. " << endl;
+	 cout << (*index)->getType() << endl;
        }
      }
   }
@@ -83,7 +87,93 @@ char* searchMedia(vector<media*> *mediaVtr){
 
 void deleteMedia(vector<media*> *mediaVtr){
   char verify[2]; //either y or n
+  //basically the same algorithm as searchMedia
+  duration_t duration;
+  char searchTitle[100];
+  int searchYear = 0;
+  char searchCommands[100];
+  //ask user input
+  cout << "To delete: search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
+  cin.get(searchCommands, 6);
+  cin.get();
+  if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
+    cout << "Enter a Title: " << endl;
+    cin.get(searchTitle, 100);
+    cin.get();
+  }
+  else if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
+    cout << "Enter a year: " << endl;
+    cin >> searchYear;
+    cin.get();
+  }
+  else {
+    cout << "invalid input." << endl;
+  }
   
+  for(vector<media*>::iterator index = mediaVtr->begin(); index!=mediaVtr->end(); ++index){
+
+    if(strcmp((*index)->getTitle(), searchTitle) == 0 || (*index)->getYear() == searchYear){
+      cout << "Title: " << (*index)->getTitle() << endl;
+      cout << "Year: " << (*index)->getYear() << endl;
+             
+      if((*index)->getType() == MOVIES){
+	cout << "Type: Movie" << endl;
+	cout << "Director: " << (dynamic_cast<Movies*>(*index))->getDirector() << endl;
+	cout << "Rating: " << (dynamic_cast<Movies*>(*index))->getRating() << endl;
+	duration = (dynamic_cast<Movies*>(*index))->getDuration();
+	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl;
+	cout << "Are you sure you would like to delete this movie? (y/n) " << endl;
+	cin.get(verify, 2);
+	cin.get();
+	if (strcmp(verify, "y") == 0 || strcmp(verify, "Y") == 0){
+	  mediaVtr->erase(index);
+	  cout << "Movie has been deleted." << endl;
+	}
+	else{
+	  cout << "Movie not deleted. " << endl;
+	}
+       }
+      else if((*index)->getType() == VIDEOGAMES){
+	cout << "Type: video game" << endl;
+	cout << "Publisher: " << (dynamic_cast<VideoGames*>(*index))->getPublisher() << endl;
+	cout << "Rating: " << (dynamic_cast<VideoGames*>(*index))->getRating() << endl;
+	cout << " " << endl;
+	cout << "Are you sure you would like to delete this video game? (y/n) " << endl;
+	cin.get(verify, 2);
+	cin.get();
+	if (strcmp(verify, "y") == 0 || strcmp(verify, "Y") == 0){
+	  mediaVtr->erase(index);
+	  cout << "Video game has been deleted." << endl;
+	}
+	else{
+	  cout << "Video game not deleted. " << endl;
+	}
+       }
+      else if((*index)->getType() == MUSIC){
+	cout << "Type: music" << endl;
+       	cout << "Artist: " << (dynamic_cast<Music*>(*index))->getArtist() << endl;
+	duration = (dynamic_cast<Music*>(*index))->getDuration();
+	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl; 
+	cout << "Publisher: " << (dynamic_cast<Music*>(*index))->getPublisher() << endl;
+	cout << "Are you sure you would like to delete this song? (y/n) " << endl;
+	cin.get(verify, 2);
+	cin.get();
+	if (strcmp(verify, "y") == 0 || strcmp(verify, "Y") == 0){
+	  mediaVtr->erase(index);
+	  cout << "Song has been deleted." << endl;
+	}
+	else{
+	  cout << "Song not deleted. " << endl;
+	}
+
+      }
+      
+       else { //something isn't right if it's else..
+	 cout << "ERROR: could not find class name. " << endl;
+	 cout << (*index)->getType() << endl;
+       }
+     }
+  }
   
   
 
@@ -129,8 +219,10 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
     cin.clear();
     cin.ignore(10000, '\n');
     movie->setRating(ratingLocal);
+    movie->setType(MOVIES);
     vtrptr->push_back(movie);
     cout << "Movie added." << endl;
+    
   }
 
   struct duration_t{
@@ -160,6 +252,7 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
     cin.get(ratingLocal, 6);
     cin.get();
     vg->setRating(ratingLocal);
+    vg->setType(VIDEOGAMES);
     vtrptr->push_back(vg);
     cout << "Video game added." << endl;
   }
@@ -187,6 +280,7 @@ void addMedia(vector<media*> *vtrptr, int typeOfMedia){
     cin.get(m->getPublisher(), 100);
     cin.get();
     cout << "Music added." << endl;    
+    m->setType(MUSIC);
     vtrptr->push_back(m);
   }
     return;

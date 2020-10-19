@@ -24,12 +24,36 @@ char* media::getTitle(){
 
 }
 int media::setType(int inputType){
-  type = inputType;
-  return 0;
+  if (inputType == MOVIES){
+    type = 1;
+    return 1;
+  }
+  else if (inputType == VIDEOGAMES){
+    type = 2;
+    return 2;
+  }
+  else if (inputType == MUSIC){
+    type = 3;
+    return 3;
+  }
+  else{
+    return 0;
+  }
 }
 
 int media::getType(){
-  return type;
+  if(type == 1){
+    return MOVIES;
+  }
+  else if(type == 2){
+    return VIDEOGAMES;
+  }
+  else if(type == 3){
+    return MUSIC;
+  }
+  else {
+    return 0;
+  }
 }
 
 int media::setTitle(char* inputTitle) {

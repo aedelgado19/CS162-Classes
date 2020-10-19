@@ -11,7 +11,6 @@ using namespace std;
 
 int media::getYear(){
   return year;
-
 }
 
 //set inputted year from addMedia() in main.cpp to saved year

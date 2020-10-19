@@ -17,7 +17,7 @@ public:
   int getType();
   int type;
 
-  //virtual deconstructor so that dynamic casting can be used
+  //virtual destructor 
   virtual ~media() {};
 
 private:

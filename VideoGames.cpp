@@ -25,31 +25,40 @@ char* VideoGames::getPublisher(){
 //save passed in rating to rating
 int VideoGames::setRating(char* inputRating){
   char option = 'a';
-  if(strcmp(inputRating, "E10+") == 0){
-    option = 'a'; //everyone 10+
-  }
-  else if(strcmp(inputRating, "E") == 0){
-    option = 'b'; //everyone
-  }
-  else if(strcmp(inputRating, "EC") == 0){
-    option = 'c'; //early childhood
-  }
-  else if(strcmp(inputRating, "T") == 0){
-    option = 'd'; //teen
-  }
-  else if(strcmp(inputRating, "M") == 0){
-    option = 'e'; //mature
-  }
-  else if(strcmp(inputRating, "RP") == 0){
-    option = 'f'; //rating pending
-  }
-  else if(strcmp(inputRating, "AO") == 0){
-    option = 'g'; //adult only
-  }
-  else{
-    cout << "Not a valid video game rating." << endl;
-  }
-  rating = option;
+  bool valid = true;
+  do{
+    valid = true;
+    if(strcmp(inputRating, "E10+") == 0 || strcmp(inputRating, "e10+") == 0){
+      option = 'a'; //everyone 10+
+    }
+    else if(strcmp(inputRating, "E") == 0 || strcmp(inputRating, "e") == 0){
+      option = 'b'; //everyone
+    }
+    else if(strcmp(inputRating, "EC") == 0 || strcmp(inputRating, "ec") == 0){
+      option = 'c'; //early childhood
+    }
+    else if(strcmp(inputRating, "T") == 0 || strcmp(inputRating, "t") == 0){
+      option = 'd'; //teen
+    }
+    else if(strcmp(inputRating, "M") == 0 || strcmp(inputRating, "m") == 0){
+      option = 'e'; //mature
+    }
+    else if(strcmp(inputRating, "RP") == 0 || strcmp(inputRating, "rp") == 0){
+      option = 'f'; //rating pending
+    }
+    else if(strcmp(inputRating, "AO") == 0 || strcmp(inputRating, "ao") == 0){
+      option = 'g'; //adult only
+    }
+    else{
+      valid = false;
+      cout << "Not a valid video game rating." << endl;
+      cout << "Possible video game ratings: E10+, E, EC, T, M, RP, AO" << endl;
+      cout << "Enter a rating again: " << endl;
+      cin.get(inputRating, 6);
+      cin.get();
+    }
+    rating = option;
+  } while (valid == false); 
   return 0;
 }
 

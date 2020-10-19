@@ -1,11 +1,6 @@
 //header file for child class: movies
 #include "media.h"
 
-struct duration_t {
-  int mins;
-  int seconds;
-};
-
 class Movies : public media {
 public:
 
@@ -23,5 +18,4 @@ private:
   char director[100];
   duration_t duration;
   char rating;
-
 };

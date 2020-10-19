@@ -2,12 +2,9 @@
 #include "media.h"
 
 class Music : public media{
-
+  
 public:
-  struct duration_t{
-    int mins;
-    int seconds;
-  };
+ 
   char* getArtist();
   void setArtist(char* inputArtist);
   int setDuration(int mins, int seconds);

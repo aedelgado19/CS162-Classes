@@ -19,18 +19,38 @@ using namespace std;
 //function prototypes
 bool checkLegal(char *command);
 void quit();
-char* searchMedia(vector<media*> *mediaVtr, char *searchCommand, char *search);
-void deleteMedia(vector<media*> *mediaVtr, char *searchCommand);
+char* searchMedia(vector<media*> *mediaVtr);
+void deleteMedia(vector<media*> *mediaVtr);
 void addMedia(vector<media*> *vtrptr, int typeOfMedia);
 bool mediaValidCheck(char *type);
 
-char* searchMedia(vector<media*> *mediaVtr, char *searchCommand, char *search){ //searchCommand is a title or year
+char* searchMedia(vector<media*> *mediaVtr){
   
   duration_t duration;
+  char searchTitle[100];
+  int searchYear = 0;
+  char searchCommands[100];
+  //ask user input
+  cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
+  cin.get(searchCommands, 6);
+  cin.get();
+  if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
+    cout << "Enter a Title: " << endl;
+    cin.get(searchTitle, 100);
+    cin.get();
+  }
+  else if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
+    cout << "Enter a year: " << endl;
+    cin >> searchYear;
+    cin.get();
+  }
+  else {
+    cout << "invalid input." << endl;
+  }
   
   for(vector<media*>::iterator index = mediaVtr->begin(); index!=mediaVtr->end(); ++index){
-    //search by title
-    if(strcmp((*index)->getTitle(), search) == 0){
+
+    if(strcmp((*index)->getTitle(), searchTitle) == 0 || (*index)->getYear() == searchYear){
       cout << "Title: " << (*index)->getTitle() << endl;
       cout << "Year: " << (*index)->getYear() << endl;
              
@@ -48,7 +68,7 @@ char* searchMedia(vector<media*> *mediaVtr, char *searchCommand, char *search){ 
        }
       else if((*index)->getType() == MUSIC){
        	cout << "Artist: " << (dynamic_cast<Music*>(*index))->getArtist() << endl;
-	duration = (dynamic_cast<Music*>(*index))->getDuration();
+	//duration = (dynamic_cast<Music*>(*index))->getDuration();
 	cout << "Duration: " << duration.mins << ":" << duration.seconds << endl; 
 	cout << "Publisher: " << (dynamic_cast<Music*>(*index))->getPublisher() << endl;
       }
@@ -61,7 +81,7 @@ char* searchMedia(vector<media*> *mediaVtr, char *searchCommand, char *search){ 
   return NULL; 
 }
 
-void deleteMedia(vector<media*> *mediaVtr, char *searchCommand){
+void deleteMedia(vector<media*> *mediaVtr){
   char verify[2]; //either y or n
   
   
@@ -267,26 +287,11 @@ int main(){
       }
 
        if(strcmp(command, "SEARCH") == 0){
-	cout << "Search by TITLE or by YEAR? (TITLE/YEAR)" << endl;
-	cin.get(searchCommands, 6);
-	cin.get();
-	if(strcmp(searchCommands, "TITLE") == 0 || strcmp(searchCommands, "title") == 0){
-	  cout << "Enter a Title: " << endl;
-	  cin.get(search, 100);
-	  cin.get();
-	  searchMedia(&mediaVtr, searchCommands, search);
-	}
-	if(strcmp(searchCommands, "YEAR") == 0 || strcmp(searchCommands, "year") == 0){
-	  cout << "Enter a year: " << endl;
-	  cin.get(search, 100);
-	  cin.get();
-	  searchMedia(&mediaVtr, searchCommands, search);	  
-	}
-
+	 searchMedia(&mediaVtr);
        }
       
       if(strcmp(command, "DELETE") == 0){
-	
+	deleteMedia(&mediaVtr);
       }
 
     }

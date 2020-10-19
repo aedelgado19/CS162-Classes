@@ -12,7 +12,7 @@ void Music::setArtist(char* inputArtist){
   return;
 }
 
-Music::duration_t Music::getDuration(){
+duration_t Music::getDuration(){
   return duration;
 }
 

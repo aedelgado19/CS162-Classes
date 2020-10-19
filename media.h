@@ -1,6 +1,11 @@
 //header file for Parent class: media
 #pragma once 
 
+struct duration_t {
+  int mins;
+  int seconds;
+};
+
 class media{
 public:
   int getYear();
